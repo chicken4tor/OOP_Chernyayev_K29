@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "lab1a"
+		}
+	],
+	"settings": {
+		"cmake.configureSettings": {
+			"CMAKE_TOOLCHAIN_FILE": "${env:VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+		},
+		"cSpell.language": "en,uk"
+	}
+}
