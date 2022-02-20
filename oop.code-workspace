@@ -8,6 +8,12 @@
 		"cmake.configureSettings": {
 			"CMAKE_TOOLCHAIN_FILE": "${env:VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
 		},
-		"cSpell.language": "en,uk"
+		"cSpell.language": "en,uk",
+		"files.associations": {
+			"utility": "cpp",
+			"random": "cpp",
+			"vector": "cpp",
+			"tuple": "cpp"
+		}
 	}
 }
