@@ -7,9 +7,11 @@
 #include <algorithm>
 #include <random>
 
+/// \file
 
 using namespace std;
 
+/// Unused cells available
 bool has_moves(const int (&mini_board)[BOARD_SIZE * BOARD_SIZE])
 {
     for (int i = 0; i < BOARD_SIZE * BOARD_SIZE; i++)
@@ -128,7 +130,6 @@ void build_bb(const board &b, int (&big_board)[BOARD_SIZE * BOARD_SIZE])
     }
 }
 
-/// Print game board state
 void print_board(const board &b)
 {
     // Build sidebar
@@ -263,15 +264,19 @@ void small_board_moves(const board &b, int board_index, vector<game_move> &moves
     }
 }
 
+/// Game state
 struct game_state
 {
-    board b;
-    game_move last_move;
-    int player;
+    board b;  ///< Game boards
+    game_move last_move;  ///< Last move
+    int player;  ///< Current player
 };
 
+/// Minimal value
 const int AB_MIN = -numeric_limits<int>::max();
+/// Maximal value
 const int AB_MAX =  numeric_limits<int>::max();
+/// Depth
 const int AB_DEPTH = 2;
 
 /// Get all valid moves
@@ -311,17 +316,24 @@ void available_moves(const game_state &s, vector<game_move> &moves)
 /// Game position heuristic
 ///
 
+/// Win points on small board
 const int BOARD_WIN = 100;
+/// Draw points
 const int DRAW = 0;
+/// Bonus points for strong position
 const int CLOSE_TO_WIN = 75;
+/// Multiplier for big board position
 const int BIG_BOARD_WEIGHT = 20;
 
+
+/// Scores for 3x3 board
 const int CELL_SCORE[] = {
     30, 20, 30,
     20, 50, 20,
     30, 20, 30,
     };
 
+/// Moves to block opponent win
 const vector<game_move> BLOCKING_OPTIONS[] = {
     { make_pair(1, 2), make_pair(3, 6), make_pair(4, 8), },
     { make_pair(0, 2), make_pair(4, 7), },
@@ -334,6 +346,7 @@ const vector<game_move> BLOCKING_OPTIONS[] = {
     { make_pair(6, 7), make_pair(2, 5), make_pair(0, 4), },
 };
 
+/// Assess mini-board
 int assess_mini(const int (&mini_board)[BOARD_SIZE * BOARD_SIZE], int last_index , int player)
 {
     int winner = has_winner(mini_board);
@@ -369,6 +382,7 @@ int assess_mini(const int (&mini_board)[BOARD_SIZE * BOARD_SIZE], int last_index
     return CELL_SCORE[last_index];
 }
 
+/// Evaluate position use heuristic
 int evaluate(const game_state &s)
 {
     int position_score = 0;
@@ -392,6 +406,7 @@ int evaluate(const game_state &s)
     return position_score;
 }
 
+/// Player's opponent
 int opponent(int player)
 {
     if (player == PLAYER_X)
@@ -435,6 +450,7 @@ void move_undo(game_state &s)
     s.player = opponent(s.player);
 }
 
+/// Is game finished
 bool is_terminal_state(const game_state &s)
 {
     int big_board[BOARD_SIZE * BOARD_SIZE] = {};
@@ -459,6 +475,7 @@ bool is_terminal_state(const game_state &s)
 
 int max_val(const game_state &s, int depth, int alpha, int beta);
 
+/// Min part
 int min_val(const game_state &s, int depth, int alpha, int beta)
 {
     if (is_terminal_state(s) || depth == 0)
@@ -493,6 +510,7 @@ int min_val(const game_state &s, int depth, int alpha, int beta)
     return val;
 }
 
+/// Max part
 int max_val(const game_state &s, int depth, int alpha, int beta)
 {
     if (is_terminal_state(s) || depth == 0)
@@ -568,7 +586,6 @@ game_move minimax(game_state &s, int player, int depth, int alpha, int beta)
     }
 }
 
-/// Self-enjoy
 void play()
 {
     game_state s = {};

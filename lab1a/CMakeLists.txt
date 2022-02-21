@@ -22,11 +22,12 @@ if(DOXYGEN_FOUND)
     # set(DOXYGEN_GENERATE_HTML NO)
     # set(DOXYGEN_GENERATE_MAN YES)
     set(DOXYGEN_EXCLUDE_PATTERNS "build")
+    set(DOXYGEN_USE_MDFILE_AS_MAINPAGE "README.md")
 
     doxygen_add_docs(
         doxygen
         ${PROJECT_SOURCE_DIR}
-        COMMENT "Generate man pages"
+        COMMENT "Generate documentation"
     )
 else(DOXYGEN_FOUND)
     message("Doxygen need to be installed to generate the doxygen documentation")

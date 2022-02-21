@@ -3,6 +3,8 @@
 
 #include <tuple>
 
+/// \file
+
 /// Cell or board states
 enum { FREE_CELL, PLAYER_X, PLAYER_O, DRAW_STATE, };
 
@@ -18,10 +20,10 @@ typedef std::tuple<int, game_move> scored_move;
 /// Full game board
 typedef int board[BOARD_SIZE * BOARD_SIZE][BOARD_SIZE * BOARD_SIZE];
 
-/// Print board
+/// Print game board state
 void print_board(const board &b);
 
-/// Mini board state
+/// Check win condition
 int has_winner(const int (&mini_board)[BOARD_SIZE * BOARD_SIZE]);
 
 /// Self-enjoy
