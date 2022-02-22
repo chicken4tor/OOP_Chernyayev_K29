@@ -1,0 +1,35 @@
+@startuml play_process
+
+:Player: --> (Play)
+:AI: --> (Opposite)
+
+"Have fun" as (Play)
+"Kill all humans" as (Opposite)
+
+@enduml
+
+@startuml class_diagram
+
+class State
+
+class Player
+
+class Game
+
+class Move
+
+class Agent
+
+class AlphaBeta
+
+class Human
+
+class Heuristic {
+    int evaluate(State state)
+}
+
+class CellWeight
+
+Heuristic <|-- CellWeight
+
+@enduml

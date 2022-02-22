@@ -18,6 +18,8 @@ Unit tests - [GoogleTest](https://google.github.io/googletest/)
 
 Документація - [Doxygen](https://www.doxygen.nl/index.html)
 
+UML діаграми - [PlantUML](https://plantuml.com/)
+
 ### Опис
 
 На початковому етапі маємо реалізацію алгоритму та програму яка грає сама з собою у текстовому режимі.
